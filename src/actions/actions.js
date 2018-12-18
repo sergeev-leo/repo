@@ -16,3 +16,31 @@ export const dispatchActionTwo = value => {
     payload: value
   }
 };
+
+const myHeaders = new Headers();
+myHeaders.append('Content-Type', 'application/json');
+
+const getquery = (a) => ({
+  method: 'POST',
+  headers: myHeaders,
+  body: JSON.stringify({
+    name: 'Leo',
+    age: a
+  })
+});
+
+const putQuery = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: JSON.stringify({
+    id: '5bc0e838b1e06e013c6c272b',
+    update: {age: 111}
+  })
+};
+
+
+export const fetchDataFromExpressServer = () =>
+  fetch(
+    'http://localhost:8080/users/', putQuery
+  ).then(response => response.json())
+    .then(json => console.log(json));
